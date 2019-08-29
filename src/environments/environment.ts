@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: '<your-storage-bucket>',
     messagingSenderId: '<your-messaging-sender-id>',
     appId: '<your-app-id>'
-  }
+  },
+  googleMapsKey: "<your-gmaps-api-key>"
 };
 
 /*
