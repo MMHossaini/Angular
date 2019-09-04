@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -33,6 +34,7 @@ import { DemoPage3Component } from './demo-page3/demo-page3.component';
       apiKey: environment.googleMapsKey
     })
     , MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule
+    , FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
