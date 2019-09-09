@@ -1,0 +1,43 @@
+<br>
+<div fxLayout="row" fxLayoutAlign="space-around">
+    <mat-card>
+        <h1>Connected accounts</h1>
+        <div matRipple class="account-row">
+            Google
+            <span fxFlex fxLayout fxLayoutAlign="end" ng-if="(isGoogleConnectedAsObservable() | async)">
+                <span class="account-connected">Connected</span>
+            </span>
+            <mat-slide-toggle (change)="linkWithGoogle()"></mat-slide-toggle>
+        </div>
+
+        <div matRipple class="account-row">
+            Facebook
+            <span fxFlex fxLayout fxLayoutAlign="end" ng-if="(isGoogleConnectedAsObservable() | async)">
+                <span class="account-connected">Connected</span>
+            </span>
+            <mat-slide-toggle (change)="linkWithFacebook()"></mat-slide-toggle>
+        </div>
+
+        <div matRipple>
+            Twitter
+            <span fxFlex fxLayout fxLayoutAlign="end" ng-if="(isGoogleConnectedAsObservable() | async)">
+                <span style="color:#e91e63;">Connected</span>
+            </span>
+            <mat-slide-toggle (change)="linkWithTwitter()"></mat-slide-toggle>
+        </div>
+        <div matRipple>
+            Github
+            <span fxFlex fxLayout fxLayoutAlign="end" ng-if="(isGoogleConnectedAsObservable() | async)">
+                <span style="color:#e91e63;">Connected</span>
+            </span>
+            <mat-slide-toggle (change)="linkWithGithub()"></mat-slide-toggle>
+        </div>
+    </mat-card>
+
+
+</div>
+
+<br>
+<div fxLayout="row" fxLayoutAlign="space-around">
+    <button mat-raised-button color="" (click)="deleteAccount()">Delete account</button>
+</div>

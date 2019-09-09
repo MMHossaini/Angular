@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -14,29 +18,45 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { LayoutComponent } from './layout/layout.component';
 import { DemoPage1Component } from './demo-page1/demo-page1.component';
 import { DemoPage2Component } from './demo-page2/demo-page2.component';
 import { DemoPage3Component } from './demo-page3/demo-page3.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { MyProfilePageComponent } from './my-profile-page/my-profile-page.component';
+import { NewProfilePageComponent } from './new-profile-page/new-profile-page.component';
+
+import { AuthenticationService } from './authentication.service';
+import { AuthenticationGuard } from './authentication.guard';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     AppComponent
     , LayoutComponent, DemoPage1Component, DemoPage2Component, DemoPage3Component
+    , LoginPageComponent, MyProfilePageComponent, NewProfilePageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase), AngularFireAuthModule, AngularFirestoreModule,
     BrowserAnimationsModule // imports firebase/app needed for everything   
     , AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
     })
-    , MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule
+    , MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatFormFieldModule
+    , MatInputModule, MatCardModule, MatMenuModule, MatSnackBarModule, MatSlideToggleModule, MatRippleModule
     , FlexLayoutModule
+    , ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthenticationService, AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,24 @@
+<div fxLayout="row" fxLayoutAlign="space-around">
+    <mat-card>
+        <h1>Login</h1>
+        <p>Enter your email address and you will be sent a link to login with</p>
+        <form [formGroup]="loginInForm" (ngSubmit)="submitLogInForm()" fxLayout="column">
+            <mat-form-field appearance="legacy">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!loginInForm.valid">
+                Get Login Link
+            </button>
+        </form>
+        <br>
+        <div fxLayout fxLayoutAlign="space-around" fxLayoutGap="1px">
+            <button mat-raised-button (click)="logInWithGoogle()">Google</button>
+            <button mat-raised-button (click)="loginWithTwitter()">Twitter</button>
+            <button mat-raised-button (click)="loginWithFacebook()">Facebook</button>
+            <button mat-raised-button (click)="loginWithGithub()">Github</button>
+        </div>
+
+    </mat-card>
+</div>
