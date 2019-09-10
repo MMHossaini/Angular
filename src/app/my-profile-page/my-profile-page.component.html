@@ -4,39 +4,36 @@
         <h1>Connected accounts</h1>
         <div matRipple class="account-row">
             Google
-            <span fxFlex fxLayout fxLayoutAlign="end" ng-if="(isGoogleConnectedAsObservable() | async)">
-                <span class="account-connected">Connected</span>
+            <span fxFlex>
             </span>
-            <mat-slide-toggle (change)="linkWithGoogle()"></mat-slide-toggle>
+            <mat-slide-toggle (change)="toogleLinkWithProvider('google.com')" [checked]="isGoogleLinked">
+            </mat-slide-toggle>
         </div>
 
         <div matRipple class="account-row">
             Facebook
-            <span fxFlex fxLayout fxLayoutAlign="end" ng-if="(isGoogleConnectedAsObservable() | async)">
-                <span class="account-connected">Connected</span>
+            <span fxFlex>
             </span>
-            <mat-slide-toggle (change)="linkWithFacebook()"></mat-slide-toggle>
+            <mat-slide-toggle (change)="toogleLinkWithProvider('facebook.com')" [checked]="isFacebookLinked">
+            </mat-slide-toggle>
         </div>
 
         <div matRipple>
             Twitter
-            <span fxFlex fxLayout fxLayoutAlign="end" ng-if="(isGoogleConnectedAsObservable() | async)">
-                <span style="color:#e91e63;">Connected</span>
+            <span fxFlex>
             </span>
-            <mat-slide-toggle (change)="linkWithTwitter()"></mat-slide-toggle>
+            <mat-slide-toggle (change)="toogleLinkWithProvider('twitter.com')" [checked]="isTwitterLinked">
+            </mat-slide-toggle>
         </div>
         <div matRipple>
             Github
-            <span fxFlex fxLayout fxLayoutAlign="end" ng-if="(isGoogleConnectedAsObservable() | async)">
-                <span style="color:#e91e63;">Connected</span>
+            <span fxFlex>
             </span>
-            <mat-slide-toggle (change)="linkWithGithub()"></mat-slide-toggle>
+            <mat-slide-toggle (change)="toogleLinkWithProvider('github.com')" [checked]="isGithubLinked">
+            </mat-slide-toggle>
         </div>
     </mat-card>
-
-
 </div>
-
 <br>
 <div fxLayout="row" fxLayoutAlign="space-around">
     <button mat-raised-button color="" (click)="deleteAccount()">Delete account</button>
