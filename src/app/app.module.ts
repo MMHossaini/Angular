@@ -36,6 +36,7 @@ import { AuthenticationService } from './authentication.service';
 import { AuthenticationGuard } from './authentication.guard';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRippleModule } from '@angular/material/core';
+import { DatabaseService } from './shared/database.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { MatRippleModule } from '@angular/material/core';
     , FlexLayoutModule
     , ReactiveFormsModule
   ],
-  providers: [AuthenticationService, AuthenticationGuard],
+  providers: [AuthenticationService, AuthenticationGuard, DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
