@@ -1,0 +1,18 @@
+<form [formGroup]="editJobForm" (ngSubmit)="saveChanges()" fxLayout="column">
+    <mat-form-field appearance="legacy">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [value]="job?.name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+        <mat-label>Price</mat-label>
+        <!-- 16 means minium pay here on that country for the job -->
+        <input matInput type="number" [value]="job?.price" formControlName="price" min="16">
+    </mat-form-field>
+
+    <mat-slide-toggle formControlName="uberPickUp">Uber Pickup</mat-slide-toggle>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="!editJobForm.valid">
+        Save
+    </button>
+</form>

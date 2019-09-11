@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1>Application</h1>
+    <h1>appBuilding Factory</h1>
     <span fxFlex></span>
     <a mat-raised-button routerLink="/login" *ngIf="isLoggedIn === false">Login</a>
 
@@ -25,6 +25,9 @@
         <a mat-list-item routerLink="/demoPage1">Demo page 1</a>
         <a mat-list-item routerLink="/demoPage2">Demo page 2</a>
         <a mat-list-item routerLink="/demoPage3">Demo page 3</a>
+        <h3 matSubheader>Apps</h3>
+        <a mat-list-item routerLink="/jobs">ALH Jobs Matrix</a>
+
       </mat-nav-list>
     </mat-sidenav>
 

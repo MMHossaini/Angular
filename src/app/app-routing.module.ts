@@ -24,6 +24,7 @@ const routes: Routes = [
       { path: 'login', component: LoginPageComponent },
       { path: 'myProfile', component: MyProfilePageComponent, canActivate: [AuthenticationGuard] },
       { path: 'newProfile', component: NewProfilePageComponent }
+      , { path: 'jobs', loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule) }
     ]
   }
 ];

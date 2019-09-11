@@ -3,4 +3,5 @@ export interface Job {
     name: string;
     price: Number;
     uberPickUp: Boolean;
+    isPublished: Boolean;
 }

@@ -1,0 +1,50 @@
+<div fxLayout="row" fxLayoutAlign="space-around">
+    <mat-card fxFlex>
+        <h1>Create a job</h1>
+        <p>Give your job a title, price, time and location. </p>
+
+        <app-create-job></app-create-job>
+
+    </mat-card>
+
+    <mat-card fxFlex>
+        <h1>Editing a job <span fxFlex></span></h1>
+        <p>Give your job a title, price, time and location. </p>
+
+        <app-edit-job [job]="selectedJob"></app-edit-job>
+    </mat-card>
+
+    <mat-card fxFlex>
+        <div fxLayout>
+
+            <h1 style="margin-top: 0px;">Jobs</h1>
+            <span fxFlex></span>
+            <div>
+                <mat-button-toggle-group name="published">
+                    <mat-button-toggle value="true">Published</mat-button-toggle>
+                    <mat-button-toggle value="false">Unpublished</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+
+        <div class="jobs" style="height: 100vh; overflow:auto;">
+
+            <mat-card *ngFor="let job of jobs | async">
+
+                <mat-card-title>
+                    {{job.name}}
+                </mat-card-title>
+                <div>$ {{job.price}} per hour</div>
+                <div>date and time : {{job.startDAte}}</div>
+                <div>location : 2004 great north road, old police station.</div>
+
+                <mat-card-actions>
+                    <button mat-raised-button (click)="selectedJob = job">Edit</button>
+                    <button mat-raised-button>Share</button>
+                    <button mat-button>Unpublish</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+    </mat-card>
+</div>
