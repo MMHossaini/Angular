@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class EditJobComponent {
 
-  @Input() job: Observable<Job>;
+  @Input() job;
   editJobForm: FormGroup;
   constructor(afs: AngularFirestore, private db: DatabaseService, formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
     this.editJobForm = formBuilder.group({

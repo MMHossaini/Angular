@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class JobsDashboardComponent {
   jobs: Observable<any[]>;
+  selectedJob;
 
   constructor(afs: AngularFirestore, private db: DatabaseService, formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
     this.jobs = afs.collection('jobs').valueChanges();
