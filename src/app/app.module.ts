@@ -32,8 +32,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { MyProfilePageComponent } from './my-profile-page/my-profile-page.component';
 import { NewProfilePageComponent } from './new-profile-page/new-profile-page.component';
 
-import { AuthenticationService } from './authentication.service';
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthenticationService } from './shared/authentication.service';
+import { AuthenticationGuard } from './shared/authentication.guard';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { DatabaseService } from './shared/database.service';

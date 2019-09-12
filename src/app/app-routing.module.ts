@@ -7,7 +7,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MyProfilePageComponent } from './my-profile-page/my-profile-page.component';
 import { NewProfilePageComponent } from './new-profile-page/new-profile-page.component';
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthenticationGuard } from './shared/authentication.guard';
 
 
 const routes: Routes = [

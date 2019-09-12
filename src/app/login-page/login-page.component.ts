@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../shared/authentication.service';
 import * as firebase from 'firebase';
 
 const emailForLoginLocalStorageKey = 'emailForLoginIn';

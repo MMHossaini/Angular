@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../shared/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as firebase from 'firebase';
 // import firebase from '@firebase/app';
