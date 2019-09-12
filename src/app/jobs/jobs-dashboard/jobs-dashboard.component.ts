@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { DatabaseService } from '../../shared/database.service';
 import { MatSnackBar } from '@angular/material';
+import { Job } from 'src/app/shared/job';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-jobs-dashboard',
@@ -11,11 +13,29 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./jobs-dashboard.component.scss']
 })
 export class JobsDashboardComponent {
-  jobs: Observable<any[]>;
+  private jobsCollection: AngularFirestoreCollection<Job>;
+  jobs: Observable<Job[]>;
   selectedJob;
 
-  constructor(afs: AngularFirestore, private db: DatabaseService, formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
-    this.jobs = afs.collection('jobs').valueChanges();
+  constructor(private afs: AngularFirestore, private db: DatabaseService, formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
+    this.jobsCollection = afs.collection<Job>('jobs');
+    this.jobs = this.jobsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Job;
+        const $key = a.payload.doc.id;
+        return { $key, ...data };
+      }))
+    );
+  }
 
+  async toggleIsPublished(job: Job) {
+    let updateJob = await this.afs.doc(`/jobs/${job.$key}`);
+    updateJob.update({
+      isPublished: !job.isPublished
+    })
+
+    this._snackBar.open('job updated', null, {
+      duration: 4000,
+    });
   }
 }

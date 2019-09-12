@@ -8,7 +8,7 @@
     </mat-card>
 
     <mat-card fxFlex>
-        <h1>Editing a job <span fxFlex></span></h1>
+        <h1>Editing a job <span fxFlex></span> <button (click)="toggleIsPublished(selectedJob)" mat-stroked-button>{{selectedJob?.isPublished === true ? 'Unpublish' : 'Publish'}} </button></h1>
         <p>Give your job a title, price, time and location. </p>
 
         <app-edit-job [job]="selectedJob"></app-edit-job>
