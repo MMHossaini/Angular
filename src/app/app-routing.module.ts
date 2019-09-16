@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: 'myProfile', component: MyProfilePageComponent, canActivate: [AuthenticationGuard] },
       { path: 'newProfile', component: NewProfilePageComponent }
       , { path: 'jobs', loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule) }
+      , { path: 'webrtc', loadChildren: () => import('./webrtc/webrtc.module').then(m => m.WebrtcModule) }
     ]
   }
 ];
