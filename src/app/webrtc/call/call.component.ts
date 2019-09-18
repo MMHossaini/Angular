@@ -1,42 +1,40 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthenticationService } from '../shared/authentication.service';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
+import { ActivatedRoute } from '@angular/router';
 import Peer from 'peerjs';
 
 @Component({
-  selector: 'app-webrtc',
-  templateUrl: './webrtc.component.html',
-  styleUrls: ['./webrtc.component.scss']
+  selector: 'app-call',
+  templateUrl: './call.component.html',
+  styleUrls: ['./call.component.scss']
 })
-export class WebrtcComponent implements OnInit {
+export class CallComponent implements OnInit {
   @ViewChild("me", { static: false }) me: any;
   @ViewChild("em", { static: false }) em: any;
   peer: Peer;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
     try {
-
       var user = await this.authenticationService.getUser();
 
       // init peerjs
       this.peer = new Peer(user.uid);
 
-      // show camera
+      // show my face 
       var myStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
       this.me.nativeElement.muted = true;
       this.me.nativeElement.srcObject = myStream;
+      // get id of the person we want to call
+      var id = this.route.snapshot.params.id;
 
-      // listen for call
-      this.peer.on('call', (call) => {
+      // call the person
+      var call = this.peer.call(id, myStream);
 
-        // Answer the call with an A/V stream.
-        call.answer(myStream);
-
-        call.on('stream', (remoteStream) => {
-          // Show stream in some <video> element.
-          this.em.nativeElement.srcObject = remoteStream
-        });
+      call.on('stream', (remoteStream) => {
+        // Show stream in some <video> element.
+        this.em.nativeElement.srcObject = remoteStream;
       });
 
     }
