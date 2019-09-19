@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --liveReload=false",
     "deploy": "ng build --prod  && firebase deploy",
     "build": "ng build",
     "test": "ng test",
