@@ -1,2 +1,12 @@
-<video #me autoplay></video>
-<video #em autoplay></video>
+<video #me autoplay id="me-video"></video>
+<video #em autoplay style="width: 100%; max-height: 100vh;"></video>
+
+<div class="container">
+    
+    <div id="loading-wrapper" *ngIf="connecting">
+
+        <mat-spinner></mat-spinner>
+        Connecting
+    </div>
+
+</div>

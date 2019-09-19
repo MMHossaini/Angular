@@ -1,2 +1,11 @@
-<video #me autoplay></video>
-<video #em autoplay></video>
+<div>
+    <video #me autoplay id="me-video"></video>
+
+
+    <div class="my-qr-code-wrapper" *ngIf="callLink">
+        <qrcode [qrdata]="callLink" usesvg="true"></qrcode>
+        <a mat-raised-button href="{{callLink}}">Call Link</a>
+    </div>
+
+    <video #em autoplay style="width: 100%; max-height: 100vh;"></video>
+</div>

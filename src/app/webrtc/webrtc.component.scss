@@ -1,0 +1,22 @@
+#me-video {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  height: 206px;
+}
+
+.my-qr-code-wrapper {
+  background-color: #3f51b5;
+  width: 150px;
+  padding: 8px;
+  font-size: 0;
+  line-height: 0;
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+
+  a {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
