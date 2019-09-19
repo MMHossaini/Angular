@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ViewChildren, QueryList } from '@angular/core';
 import { AuthenticationService } from '../shared/authentication.service';
 import Peer from 'peerjs';
 import { Location } from '@angular/common';
@@ -12,11 +12,9 @@ import { environment } from 'src/environments/environment';
 })
 export class WebrtcComponent implements OnInit, OnDestroy {
 
-  ngOnDestroy(): void {
-    this.peer.destroy()
-  }
   @ViewChild("me", { static: false }) me: any;
   @ViewChild("em", { static: false }) em: any;
+
   peer: Peer;
   callLink: string;
   constructor(private angularFirestore: AngularFirestore, private authenticationService: AuthenticationService, private loc: Location) { }
@@ -41,22 +39,7 @@ export class WebrtcComponent implements OnInit, OnDestroy {
       this.peer.on('call', (call) => {
 
         if (confirm('Answer call')) {
-
-          // Answer the call with an A/V stream.
-          call.answer(myStream);
-
-          call.on('stream', (remoteStream) => {
-            // Show stream in some <video> element.
-            this.em.nativeElement.srcObject = remoteStream
-          });
-
-          call.on('close', function () {
-            alert('closed')
-          });
-
-          call.on('error', (err) => {
-            alert('error')
-          });
+          this.answerCall(call);
         }
       });
 
@@ -76,13 +59,37 @@ export class WebrtcComponent implements OnInit, OnDestroy {
     }
   }
 
+  answerCall(call) {
+    
+    // Answer the call with an A/V stream.
+    call.answer(this.me.nativeElement.srcObject);
 
-  getRandomID() {
-    // Math.random should be unique because of its seeding algorithm.
-    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-    // after the decimal.
-    return '_' + Math.random().toString(36).substr(2, 9);
+    call.on('stream', (remoteStream) => {
+      // Show stream in some <video> element.
+      this.em.nativeElement.srcObject = remoteStream
+    });
 
+    call.on('close', (err) => {
+      // remove call
+      this.closeCall(call)
+    });
+
+    call.on('error', (err) => {
+      // remove call
+      console.log('error')
+    });
+  }
+
+  closeCall(call) {
+    debugger;
+  }
+
+  ngOnDestroy(): void {
+    this.peer.destroy()
+
+    // stop stream
+    let stream = this.me.nativeElement.srcObject;
+    stream.getTracks().forEach(track => track.stop());
   }
 
 }

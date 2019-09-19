@@ -7,6 +7,8 @@ import { CallComponent } from './call/call.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { MatButtonModule } from '@angular/material';
     WebrtcRoutingModule,
     QRCodeModule,
     MatProgressSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    FlexLayoutModule
   ]
 })
 export class WebrtcModule { }

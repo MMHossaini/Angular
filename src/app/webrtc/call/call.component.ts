@@ -17,6 +17,7 @@ export class CallComponent implements OnInit, OnDestroy {
   @ViewChild("em", { static: false }) em: any;
   peer: Peer;
   connecting: boolean = true;
+  call;
 
   constructor(private angularFirestore: AngularFirestore, private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
 
@@ -35,9 +36,9 @@ export class CallComponent implements OnInit, OnDestroy {
       this.peer.on('open', (id) => {
 
         // call the person
-        var call = this.peer.call(this.route.snapshot.params.id, myStream);
+        this.call = this.peer.call(this.route.snapshot.params.id, myStream);
 
-        call.on('stream', (remoteStream) => {
+        this.call.on('stream', (remoteStream) => {
 
           this.connecting = false;
           // Show stream in some <video> element.
@@ -64,6 +65,10 @@ export class CallComponent implements OnInit, OnDestroy {
           break;
       }
     }
+  }
+
+  endCall() {
+    this.call.close();
   }
 
 }

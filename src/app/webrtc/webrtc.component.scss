@@ -1,5 +1,9 @@
+.container {
+  position: relative;
+}
+
 #me-video {
-  position: fixed;
+  position: absolute;
   bottom: 1em;
   right: 1em;
   height: 206px;
@@ -11,7 +15,7 @@
   padding: 8px;
   font-size: 0;
   line-height: 0;
-  position: fixed;
+  position: absolute;
   bottom: 12px;
   left: 12px;
 
@@ -19,4 +23,8 @@
     width: 100%;
     margin-top: 8px;
   }
+}
+
+.call {
+    border: 1px solid;
 }

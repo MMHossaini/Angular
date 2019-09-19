@@ -1,12 +1,25 @@
-<video #me autoplay id="me-video"></video>
-<video #em autoplay style="width: 100%; max-height: 100vh;"></video>
+<div class="container" fxLayout="column">
 
-<div class="container">
-    
-    <div id="loading-wrapper" *ngIf="connecting">
 
-        <mat-spinner></mat-spinner>
-        Connecting
+    <!-- video part -->
+    <div fxFlex fxLayoutAlign="center center">
+        <video #em autoplay style="width: 100%; max-height: 100vh;" [class.ghost-em]="connecting"></video>
+        <video #me autoplay id="me-video" [class.mini-me]="connecting==false"></video>
+
     </div>
 
+    <!-- botton part with buttons -->
+
+    <div fxLayout fxLayoutAlign="center center" style="margin-bottom: 12px;">
+        <button mat-fab id="call-end-button" (click)="endCall()">
+            <mat-icon>call_end</mat-icon>
+        </button>
+    </div>
+
+</div>
+
+<div id="loading-wrapper" *ngIf="connecting" fxLayout="column" fxLayoutAlign="center center">
+
+    <mat-spinner></mat-spinner>
+    <p>Connecting</p>
 </div>
