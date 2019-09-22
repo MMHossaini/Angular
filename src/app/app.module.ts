@@ -37,6 +37,7 @@ import { AuthenticationGuard } from './shared/authentication.guard';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { DatabaseService } from './shared/database.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DatabaseService } from './shared/database.service';
     , MatInputModule, MatCardModule, MatMenuModule, MatSnackBarModule, MatSlideToggleModule, MatRippleModule
     , FlexLayoutModule
     , ReactiveFormsModule
+    , ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AuthenticationService, AuthenticationGuard, DatabaseService],
   bootstrap: [AppComponent]
