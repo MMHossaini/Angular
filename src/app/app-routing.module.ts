@@ -8,12 +8,16 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { MyProfilePageComponent } from './my-profile-page/my-profile-page.component';
 import { NewProfilePageComponent } from './new-profile-page/new-profile-page.component';
 import { AuthenticationGuard } from './shared/authentication.guard';
+import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
 
 
 const routes: Routes = [
 
   // landing page route
-  { path: '', redirectTo: 'demoPage1', pathMatch: 'full' },
+  {
+    path: '',
+    component: ComingSoonPageComponent
+  },
   {
     path: '',
     component: LayoutComponent,

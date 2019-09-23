@@ -38,12 +38,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { DatabaseService } from './shared/database.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
 
 @NgModule({
   declarations: [
     AppComponent
     , LayoutComponent, DemoPage1Component, DemoPage2Component, DemoPage3Component
-    , LoginPageComponent, MyProfilePageComponent, NewProfilePageComponent
+    , LoginPageComponent, MyProfilePageComponent, NewProfilePageComponent, ComingSoonPageComponent
   ],
   imports: [
     BrowserModule,
