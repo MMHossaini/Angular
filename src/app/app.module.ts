@@ -39,12 +39,13 @@ import { MatRippleModule } from '@angular/material/core';
 import { DatabaseService } from './shared/database.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
+import { AvatarComponent } from './shared/avatar/avatar.component';
 
 @NgModule({
   declarations: [
     AppComponent
     , LayoutComponent, DemoPage1Component, DemoPage2Component, DemoPage3Component
-    , LoginPageComponent, MyProfilePageComponent, NewProfilePageComponent, ComingSoonPageComponent
+    , LoginPageComponent, MyProfilePageComponent, NewProfilePageComponent, ComingSoonPageComponent, AvatarComponent
   ],
   imports: [
     BrowserModule,

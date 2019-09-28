@@ -5,16 +5,8 @@
     </button>
     <h1>appBuilding Factory</h1>
     <span fxFlex></span>
-    <a mat-raised-button routerLink="/login" *ngIf="isLoggedIn === false">Login</a>
 
-    <button mat-icon-button [matMenuTriggerFor]="avatar" *ngIf="isLoggedIn == true">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-
-    <mat-menu #avatar="matMenu">
-      <button mat-menu-item (click)="goToProfile()">Proifile</button>
-      <button mat-menu-item (click)="logOut()">Log out</button>
-    </mat-menu>
+    <app-avatar></app-avatar>
 
   </mat-toolbar>
 

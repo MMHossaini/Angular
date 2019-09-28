@@ -12,4 +12,13 @@ export class AuthenticationService {
   getUser() {
     return this.afAuth.authState.pipe(first()).toPromise();
   }
+
+  // observable version of getUser()
+  getUser$() {
+    return this.afAuth.authState
+  }
+
+  logOut() {
+    this.afAuth.auth.signOut();
+  }
 }
