@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="space-around">
     <mat-card>
-        <h1>Login</h1>
-        <p>Enter your email address and you will be sent a link to login with</p>
+        <h1>Log in by email</h1>
+        <p>We'll email you a link that will instantly log you in</p>
         <form [formGroup]="loginInForm" (ngSubmit)="submitLogInForm()" fxLayout="column">
             <mat-form-field appearance="legacy">
                 <mat-label>Email</mat-label>
@@ -9,7 +9,7 @@
                 <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
             <button type="submit" mat-raised-button color="primary" [disabled]="!loginInForm.valid">
-                Get Login Link
+                SEND EMAIL
             </button>
         </form>
         <br>
