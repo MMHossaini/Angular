@@ -13,6 +13,7 @@ export const environment = {
     messagingSenderId: '<your-messaging-sender-id>',
     appId: '<your-app-id>'
   },
+  herokuUrl: 'http://localhost:4000/',
   googleMapsKey: "<your-gmaps-api-key>"
 };
 

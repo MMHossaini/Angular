@@ -1,0 +1,21 @@
+<mat-card>
+    <h1>Youtube Download</h1>
+    <p>Please insert a valid video URL</p>
+    <form [formGroup]="form" (ngSubmit)="convert()" fxLayout="column">
+        <mat-form-field appearance="legacy">
+            <mat-label>Video URL</mat-label>
+            <input matInput type="url" formControlName="videoURL">
+        </mat-form-field>
+        <br>
+        <mat-radio-group formControlName="type">
+            <mat-radio-button value="audioandvideo">MP4</mat-radio-button>
+            <mat-radio-button value="audioonly">MP3</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <br>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
+            Convert
+        </button>
+    </form>
+
+</mat-card>
