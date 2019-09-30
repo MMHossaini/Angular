@@ -2,8 +2,8 @@
 
 ## Get Started
 
-Modules
-simply run this command `ng generate module NewModuleName --module app --route jobs`  `app` is the root module.
+### How to create a new module
+`ng g m <ModuleName> --module app --route <Route>`  `app` is the root module.
 # App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
