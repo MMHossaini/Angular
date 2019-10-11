@@ -40,10 +40,11 @@ import { DatabaseService } from './shared/database.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ComingSoonPageComponent } from './coming-soon-page/coming-soon-page.component';
 import { AvatarComponent } from './shared/avatar/avatar.component';
+import { LoginComponent } from './shared/components/login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent , LoginComponent
     , LayoutComponent, DemoPage1Component, DemoPage2Component, DemoPage3Component
     , LoginPageComponent, MyProfilePageComponent, NewProfilePageComponent, ComingSoonPageComponent, AvatarComponent
   ],
