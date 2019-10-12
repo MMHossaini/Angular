@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+
+.container {
+//   @include mat-elevation(1);
+
+  padding: 1em;
+  .logo {
+    width: 50%;
+    margin: 0 auto;
+    /* position: relative; */
+    display: block;
+    padding: 1em 0;
+  }
+}

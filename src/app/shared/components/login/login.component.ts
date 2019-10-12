@@ -15,6 +15,8 @@ const emailForLoginLocalStorageKey = 'emailForLoginIn';
 })
 export class LoginComponent {
   loginInForm: FormGroup;
+  showProgress = false;
+  isEmailSent = false;
   user: Observable<any>;
   user$: Observable<firebase.User>;
 
@@ -25,8 +27,8 @@ export class LoginComponent {
     private route: Router,
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar
-    
-    ) {
+
+  ) {
 
     this.user$ = authenticationService.getUser$();
 
@@ -36,53 +38,49 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
     });
 
-    //Checks if an incoming link is a sign-in with email link.
-    // forward to newProfilePage if the user doesnt have a profile
-    if (this.afAuth.auth.isSignInWithEmailLink(this.route.url)) {
-      this.confirmLogin();
-    }
   }
 
   // sends a link to the email address enetered by the user in the email form
   // when the users clicks the link they get sent to the confirmSignIn link with some parameters that firebase 
   // trys to use and authenticate the user
   async submitLogInForm() {
+    try {
 
-    // make sure the email form is valid
-    if (this.loginInForm.valid) {
-      const actionCodeSettings = {
-        // URL you want to redirect back to. The domain (www.example.com) for this
-        // URL must be whitelisted in the Firebase Console.
-        url: window.location.origin + '/login',
-        handleCodeInApp: true
-      };
+      // make sure the email form is valid
+      if (this.loginInForm.valid) {
 
-      // grab the email from the form values
-      let email = this.loginInForm.value.email;
+        const actionCodeSettings = {
+          // URL you want to redirect back to. The domain (www.example.com) for this
+          // URL must be whitelisted in the Firebase Console.
+          url: this.authenticationService.getConfirmLoginURL(),
+          handleCodeInApp: true
+        };
 
-      try {
+        let email = this.loginInForm.value.email;
 
-        // tell the user what to do next
-        this._snackBar.open('Nice!, Please check your email now and click the link to log in', null, {
-          duration: 4000,
-        });
+        // save email
+        this.authenticationService.saveEmailForConfirmLogin(email);
 
-        // we store the email the user wishes to get sign in link with in the local storage
-        // and we read it back in confirmation page when the user clicks the link they get sent in email
-        window.localStorage.setItem(emailForLoginLocalStorageKey, email);
+        // show progress
+        this.showProgress = true;
 
         await this.afAuth.auth.sendSignInLinkToEmail(
           email,
           actionCodeSettings
         );
-      }
-      catch (err) {
-        this._snackBar.open(err['message'], null, {
-          duration: 4000,
-        });
+
+        this.showProgress = false;
+        this.isEmailSent = true;
       }
     }
+    catch (err) {
+      this.showProgress = false;
+      this._snackBar.open(err['message'], null, {
+        duration: 4000,
+      });
+    }
   }
+
 
   async confirmLogin() {
     let email = window.localStorage.getItem(emailForLoginLocalStorageKey);

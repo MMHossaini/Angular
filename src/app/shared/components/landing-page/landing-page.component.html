@@ -1,0 +1,20 @@
+<div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+
+    <!-- show loading progress -->
+    <mat-spinner *ngIf="showProgress==true else pageContent"></mat-spinner>
+</div>
+
+
+<ng-template #pageContent>
+    <app-dashboard *ngIf="user$ | async else loggedOut"></app-dashboard>
+
+    <ng-template #loggedOut>
+        <app-login fxFlexFill></app-login>
+    </ng-template>
+
+</ng-template>
+
+
+<ng-template #loggedOut>
+    <a mat-raised-button routerLink="/login">Login</a>
+</ng-template>
