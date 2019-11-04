@@ -75,9 +75,18 @@ export class LoginComponent {
     }
     catch (err) {
       this.showProgress = false;
-      this._snackBar.open(err['message'], null, {
-        duration: 4000,
-      });
+      switch (err['code']) {
+        case 'auth/operation-not-allowed':
+          this._snackBar.open('You need to enable Email Link Passwordless sign in in your firebase console project', null, {
+            duration: 4000,
+          });
+          break;
+
+        default:
+          this._snackBar.open(err['message'], null, {
+            duration: 4000,
+          });
+      }
     }
   }
 
