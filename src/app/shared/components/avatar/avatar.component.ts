@@ -19,7 +19,7 @@ export class AvatarComponent {
   }
 
   goToProfile() {
-    this.route.navigate(['/myProfile']);
+    this.route.navigate(['/profile']);
   }
 
 }

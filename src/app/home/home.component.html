@@ -1,12 +1,11 @@
-<!-- Show login form if user is not logged in -->
+<!-- Show login if user is not logged in -->
 
 <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
-    <div *ngIf="user$ | async else loggedOut">
+    <div *ngIf="user$ | async else login">
         <h1>This is your home</h1>
-
     </div>
 </div>
 
-<ng-template #loggedOut>
+<ng-template #login>
     <app-login fxFlexFill></app-login>
 </ng-template>

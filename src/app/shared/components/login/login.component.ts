@@ -92,7 +92,6 @@ export class LoginComponent {
     }
   }
 
-
   async confirmLogin() {
     let email = this.authenticationService.getLoginEmail();
 
@@ -102,6 +101,10 @@ export class LoginComponent {
 
       // remove the email from localStorage
       window.localStorage.removeItem(email);
+
+      // @TODO
+      // create a new user
+      // or udpate existing one
 
       this.route.navigate(['/profile']);
 
