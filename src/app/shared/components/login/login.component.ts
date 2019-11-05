@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../shared/authentication.service';
 import * as firebase from 'firebase';
-const emailForLoginLocalStorageKey = 'emailForLoginIn';
 
 @Component({
   selector: 'app-login',
@@ -31,12 +30,16 @@ export class LoginComponent {
   ) {
 
     this.user$ = authenticationService.getUser$();
-
     this.user = this.afAuth.authState;
-
     this.loginInForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
     });
+
+    // check if this is a signInWithEmailLink
+    if (this.afAuth.auth.isSignInWithEmailLink(this.route.url)) {
+      this.showProgress = true;
+      this.confirmLogin();
+    }
 
   }
 
@@ -49,12 +52,6 @@ export class LoginComponent {
       // make sure the email form is valid
       if (this.loginInForm.valid) {
 
-        const actionCodeSettings = {
-          // URL you want to redirect back to. The domain (www.example.com) for this
-          // URL must be whitelisted in the Firebase Console.
-          url: this.authenticationService.getConfirmLoginURL(),
-          handleCodeInApp: true
-        };
 
         let email = this.loginInForm.value.email;
 
@@ -66,7 +63,12 @@ export class LoginComponent {
 
         await this.afAuth.auth.sendSignInLinkToEmail(
           email,
-          actionCodeSettings
+          {
+            // URL you want to redirect back to. The domain (www.example.com) for this
+            // URL must be whitelisted in the Firebase Console.
+            url: window.location.origin + '/login',
+            handleCodeInApp: true
+          }
         );
 
         this.showProgress = false;
@@ -92,83 +94,20 @@ export class LoginComponent {
 
 
   async confirmLogin() {
-    let email = window.localStorage.getItem(emailForLoginLocalStorageKey);
+    let email = this.authenticationService.getLoginEmail();
 
-    // If missing email, prompt user for it
-    if (!email) {
-      email = window.prompt('Please provide your email for confirmation');
-    }
+    if (email) {
+      // wait to sign in
+      await this.afAuth.auth.signInWithEmailLink(email, this.route.url);
 
-    // wait to sign in
-    await this.afAuth.auth.signInWithEmailLink(email, this.route.url);
+      // remove the email from localStorage
+      window.localStorage.removeItem(email);
 
-    // remove the email from localStorage
-    window.localStorage.removeItem(emailForLoginLocalStorageKey);
+      this.route.navigate(['/profile']);
 
-    // forward to newProfilePage if the user doesnt have a profile
-    // @question , what happens when user goes back from new Profile page to confirm page
-    // @TODO
-    this.route.navigate(['/newProfile']);
-
-    this._snackBar.open('Welcome ' + email, null, {
-      duration: 4000,
-    });
-  }
-
-  async loginWithProvider(provider) {
-    return firebase.auth().signInWithPopup(provider)
-  }
-
-  async logInWithGoogle() {
-    // log in with google
-    var credential = await this.loginWithProvider(new firebase.auth.GoogleAuthProvider())
-
-    if (credential.user) {
-      // we have logged in successfully
-      this._snackBar.open('Welcome ' + credential.user.displayName, null, {
+      this._snackBar.open('Welcome ' + email, null, {
         duration: 4000,
       });
-      // 
-    }
-
-  }
-
-  async loginWithFacebook() {
-    // log in with facebook
-    var credential = await this.loginWithProvider(new firebase.auth.FacebookAuthProvider())
-
-    if (credential.user) {
-      // we have logged in successfully
-      this._snackBar.open('Welcome ' + credential.user.displayName, null, {
-        duration: 4000,
-      });
-      // 
-    }
-  }
-
-  async loginWithGithub() {
-    // log in with github
-    var credential = await this.loginWithProvider(new firebase.auth.GithubAuthProvider())
-
-    if (credential.user) {
-      // we have logged in successfully
-      this._snackBar.open('Welcome ' + credential.user.displayName, null, {
-        duration: 4000,
-      });
-      // 
-    }
-  }
-
-  async loginWithTwitter() {
-    // log in with twitter
-    var credential = await this.loginWithProvider(new firebase.auth.TwitterAuthProvider())
-
-    if (credential.user) {
-      // we have logged in successfully
-      this._snackBar.open('Welcome ' + credential.user.displayName, null, {
-        duration: 4000,
-      });
-      // 
     }
   }
 

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { DatabaseService } from '../../shared/database.service';
 import { MatSnackBar } from '@angular/material';
 import { Job } from 'src/app/shared/job';
 import { map } from 'rxjs/operators';
+import { DatabaseService } from 'src/app/shared/database.service';
 
 @Component({
   selector: 'app-jobs-dashboard',

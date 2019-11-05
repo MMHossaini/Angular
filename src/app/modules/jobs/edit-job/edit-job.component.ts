@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { DatabaseService } from '../../shared/database.service';
 import { MatSnackBar } from '@angular/material';
-import { Job } from '../../shared/job';
 import { Observable } from 'rxjs';
+import { DatabaseService } from 'src/app/shared/database.service';
 
 @Component({
   selector: 'app-edit-job',

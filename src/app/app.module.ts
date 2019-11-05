@@ -23,12 +23,9 @@ import { MatInputModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LayoutComponent } from './layout/layout.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { MyProfilePageComponent } from './my-profile-page/my-profile-page.component';
-import { NewProfilePageComponent } from './new-profile-page/new-profile-page.component';
-
 import { AuthenticationService } from './shared/authentication.service';
 import { AuthenticationGuard } from './shared/authentication.guard';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -37,18 +34,17 @@ import { DatabaseService } from './shared/database.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
 import { LoginComponent } from './shared/components/login/login.component';
-import { LandingPageComponent } from './shared/components/landing-page/landing-page.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
-import { ConfirmLoginComponent } from './shared/components/confirm-login/confirm-login.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent,
-    LayoutComponent, LoginPageComponent,
-    MyProfilePageComponent, NewProfilePageComponent,
-    AvatarComponent, LandingPageComponent, DashboardComponent, ConfirmLoginComponent, ProfileComponent
+    AppComponent,
+    LoginComponent,
+    LayoutComponent,
+    AvatarComponent,
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

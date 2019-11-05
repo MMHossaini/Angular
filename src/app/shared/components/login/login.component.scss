@@ -1,8 +1,6 @@
 @import "~@angular/material/theming";
 
 .container {
-//   @include mat-elevation(1);
-
   padding: 1em;
   .logo {
     width: 50%;
@@ -10,5 +8,9 @@
     /* position: relative; */
     display: block;
     padding: 1em 0;
+  }
+
+  h1 {
+    text-align: center;
   }
 }

@@ -4,7 +4,6 @@ import { first } from 'rxjs/operators';
 
 
 const emailKey = 'email';
-export const CONFIRM_LOGIN_PATH = "confirmLogin"
 @Injectable({
   providedIn: 'root'
 })
@@ -24,11 +23,6 @@ export class AuthenticationService {
   logOut() {
     this.afAuth.auth.signOut();
   }
-
-  getConfirmLoginURL() {
-    return window.location.origin + '/' + CONFIRM_LOGIN_PATH
-  }
-
 
   /**
    * saves this email in the localstorage for later 

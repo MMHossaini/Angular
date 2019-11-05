@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DatabaseService } from '../../shared/database.service';
 import { MatSnackBar } from '@angular/material';
+import { DatabaseService } from 'src/app/shared/database.service';
 
 @Component({
   selector: 'app-create-job',
