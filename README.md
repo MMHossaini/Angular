@@ -1,6 +1,20 @@
 ## Built by and for developers ❤️
 
-## Get Started
+## Features
+  * Passwordless sign in
+  * Linking of Social Logins on Account dashboard
+  * Google Material design
+  * PWA(Progressive Web app)
+  * Firebase CRUD
+  * Protected Routes with Authorization  
+
+  ## Installation
+
+* `git clone https://github.com/MMHossaini/Angular.git`
+* `cd Angular`
+* `npm install`
+* `npm start`
+* visit http://localhost:4200
 
 ### How to create a new module
 `ng g m <ModuleName> --module app --route <Route>`  `app` is the root module.
