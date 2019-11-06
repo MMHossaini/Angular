@@ -97,14 +97,13 @@ export class LoginComponent {
 
     if (email) {
       // wait to sign in
-      await this.afAuth.auth.signInWithEmailLink(email, this.route.url);
+      let userCredential = await this.afAuth.auth.signInWithEmailLink(email, this.route.url);
 
       // remove the email from localStorage
       window.localStorage.removeItem(email);
 
-      // @TODO
-      // create a new user
-      // or udpate existing one
+      // update user
+      await this.authenticationService.updateUser(userCredential.user);
 
       this.route.navigate(['/profile']);
 

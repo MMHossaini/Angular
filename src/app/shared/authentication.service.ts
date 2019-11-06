@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { first } from 'rxjs/operators';
+import { User } from './models/user';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 
 
 const emailKey = 'email';
@@ -9,7 +11,7 @@ const emailKey = 'email';
 })
 export class AuthenticationService {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private angularFirestore: AngularFirestore) { }
 
   getUser() {
     return this.afAuth.authState.pipe(first()).toPromise();
@@ -61,5 +63,22 @@ export class AuthenticationService {
 
       return cred;
     }
+  }
+
+  /**
+   * Call this when users login in
+   * if they log in with google we should update user after a 
+   * successfull login. for example they change changed their profile
+   * picture in google profile and we need to update our system
+   * @param user firebase user
+   */
+  async updateUser(user) {
+    return this.angularFirestore.doc(`users/${user.uid}`).set({
+      $key: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL
+    }, { merge: true })
+
   }
 }
