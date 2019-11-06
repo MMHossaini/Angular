@@ -25,7 +25,7 @@ export class CreateJobComponent {
     if (this.newJobForm.valid) {
 
 
-      var job = await this.db.AddJob({
+      var job = await this.db.addJob({
         name: this.newJobForm.value.name,
         price: this.newJobForm.value.price,
         uberPickUp: this.newJobForm.value.uberPickUp,

@@ -13,5 +13,5 @@ export class HomeComponent {
   constructor(private authenticationService: AuthenticationService, private route: Router) {
     this.user$ = authenticationService.getUser$();
   }
-
+  
 }

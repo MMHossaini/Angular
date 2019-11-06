@@ -9,7 +9,7 @@ export class DatabaseService {
 
   constructor(private angularFirestore: AngularFirestore) { }
 
-  AddJob(job: Job) {
+  addJob(job: Job) {
     return this.angularFirestore.collection('jobs').add(job);
   }
 }

@@ -24,18 +24,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { LayoutComponent } from './layout/layout.component';
 import { AuthenticationService } from './shared/authentication.service';
 import { AuthenticationGuard } from './shared/authentication.guard';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatRippleModule } from '@angular/material/core';
 import { DatabaseService } from './shared/database.service';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { LayoutComponent } from './layout/layout.component';
+import { HomeComponent } from './home/home.component';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
