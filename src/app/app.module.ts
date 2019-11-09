@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -36,6 +37,7 @@ import { HomeComponent } from './home/home.component';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
+import { NewUserComponent } from './shared/components/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     LayoutComponent,
     AvatarComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,7 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     MatListModule, MatButtonModule, MatFormFieldModule,
     MatInputModule, MatCardModule, MatMenuModule,
     MatProgressSpinnerModule, MatSnackBarModule,
-    MatSlideToggleModule, MatRippleModule
+    MatSlideToggleModule, MatRippleModule, MatTooltipModule
     , FlexLayoutModule
     , ReactiveFormsModule
     , ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })

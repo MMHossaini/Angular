@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from '../../../shared/authentication.service';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
+import { DatabaseService } from '../../database.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent {
     private authenticationService: AuthenticationService,
     private route: Router,
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private databaseService: DatabaseService
 
   ) {
 
@@ -102,14 +104,26 @@ export class LoginComponent {
       // remove the email from localStorage
       window.localStorage.removeItem(email);
 
+      let doesUserExist: any = await this.databaseService.getUserById(userCredential.user.uid);
+
+      // if user exists
+      if (doesUserExist) {
+        this._snackBar.open('Welcome back ' + doesUserExist.firstName, null, {
+          duration: 4000,
+        });
+
+        this.route.navigate(['/']);
+      }
+      else {
+        this.route.navigate(['/new-user']);
+
+        this._snackBar.open('Welcome ' + email + ' , Please create a profile', null, {
+          duration: 4000,
+        });
+      }
+
       // update user
       await this.authenticationService.updateUser(userCredential.user);
-
-      this.route.navigate(['/profile']);
-
-      this._snackBar.open('Welcome ' + email, null, {
-        duration: 4000,
-      });
     }
   }
 

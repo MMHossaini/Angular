@@ -73,11 +73,10 @@ export class AuthenticationService {
    */
   async updateUser(user) {
     return this.angularFirestore.doc(`users/${user.uid}`).set({
-      $key: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL
     }, { merge: true })
-
+    
   }
 }

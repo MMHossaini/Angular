@@ -5,6 +5,7 @@ import { AuthenticationGuard } from './shared/authentication.guard';
 import { LoginComponent } from './shared/components/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
+import { NewUserComponent } from './shared/components/new-user/new-user.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard] },
+      { path: 'new-user', component: NewUserComponent, canActivate: [AuthenticationGuard] },
       // modules
       { path: 'jobs', loadChildren: () => import('./modules/jobs/jobs.module').then(m => m.JobsModule) },
       { path: 'youtube', loadChildren: () => import('./modules/youtube-converter/youtube-converter.module').then(m => m.YoutubeConverterModule) },

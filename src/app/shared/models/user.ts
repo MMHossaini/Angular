@@ -1,5 +1,5 @@
 export interface User {
-    $key?: string;
+    $key: string;
     email: string;
     photoURL?: string;
     lastName?: string;
