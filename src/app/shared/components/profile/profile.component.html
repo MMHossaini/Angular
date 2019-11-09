@@ -1,5 +1,31 @@
-<h1>This is your profile</h1>
+<div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
 
-<button mat-button color="accent">
-    Delete account
-</button>
+    <h1>This is your profile</h1>
+    <p>Join Date: 15/45/65</p>
+
+    <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" fxLayout="column">
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>First name</mat-label>
+            <input matInput type="text" formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" formControlName="lastName">
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary" [disabled]="!userForm.valid">
+            Save
+        </button>
+
+    </form>
+    <button mat-button color="accent">
+        Delete account
+    </button>
+</div>
