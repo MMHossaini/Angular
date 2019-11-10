@@ -5,4 +5,5 @@ export interface User {
     lastName?: string;
     firstName?: string;
     displayName?: string;
+    createdAt?: any;
 }

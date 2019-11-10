@@ -1,8 +1,8 @@
-<div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+<div fxFlexFill fxLayout="column" *ngIf="user$ | async as user" fxLayoutAlign="center center">
 
     <h1>This is your profile</h1>
-    <p>Join Date: 15/45/65</p>
-
+    <p>Join Date: {{user.createdAt.seconds * 1000 | date: 'medium'}}
+    </p>
     <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" fxLayout="column">
 
         <mat-form-field appearance="legacy">

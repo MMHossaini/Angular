@@ -4,6 +4,8 @@ import { AuthenticationService } from '../../authentication.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { DatabaseService } from '../../database.service';
+import { User } from '../../models/user';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +14,8 @@ import { DatabaseService } from '../../database.service';
 })
 export class ProfileComponent implements OnInit {
   firebaseUser: any;
-  user: any;
+  user: User;
+  user$: Observable<User>;
   userForm: FormGroup = new FormGroup({
     email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email]),
     firstName: new FormControl('', [Validators.required]),
@@ -23,12 +26,13 @@ export class ProfileComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private route: Router,
     private _snackBar: MatSnackBar,
-    private databaseService: DatabaseService,
+    private databaseService: DatabaseService
   ) { }
 
   async ngOnInit() {
     this.firebaseUser = await this.authenticationService.getUser();
     this.user = await this.databaseService.getUserById(this.firebaseUser.uid);
+    this.user$ = this.databaseService.getUserById$(this.firebaseUser.uid);
     this.userForm.patchValue({
       'email': this.firebaseUser.email,
       'lastName': this.user.lastName,
