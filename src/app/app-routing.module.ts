@@ -22,7 +22,8 @@ const routes: Routes = [
       { path: 'jobs', loadChildren: () => import('./modules/jobs/jobs.module').then(m => m.JobsModule) },
       { path: 'youtube', loadChildren: () => import('./modules/youtube-converter/youtube-converter.module').then(m => m.YoutubeConverterModule) },
       { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
-      { path: 'webrtc', loadChildren: () => import('./modules/webrtc/webrtc.module').then(m => m.WebrtcModule) }
+      { path: 'webrtc', loadChildren: () => import('./modules/webrtc/webrtc.module').then(m => m.WebrtcModule) },
+      { path: 'lol', loadChildren: () => import('./modules/leage-of-legends/leage-of-legends.module').then(m => m.LeageOfLegendsModule) }
     ]
   }
 ];
