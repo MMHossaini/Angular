@@ -51,7 +51,6 @@ export class CallComponent implements OnInit, OnDestroy {
 
       // listen for call
       this.peer.on('error', (call) => {
-        debugger;
       });
 
 

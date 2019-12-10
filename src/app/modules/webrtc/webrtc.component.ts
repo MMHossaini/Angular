@@ -81,7 +81,6 @@ export class WebrtcComponent implements OnInit, OnDestroy {
   }
 
   closeCall(call) {
-    debugger;
   }
 
   ngOnDestroy(): void {
