@@ -3,10 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthenticationService } from '../../../shared/authentication.service';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
-import { DatabaseService } from '../../database.service';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
+import { DatabaseService } from 'src/app/shared/database.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +14,9 @@ import { DatabaseService } from '../../database.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  passwordlessSignOn: boolean = true;
+  showLoading: boolean = true;
+
   loginInForm: FormGroup;
   showProgress = false;
   isEmailSent = false;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../shared/authentication.service';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,5 +13,5 @@ export class HomeComponent {
   constructor(private authenticationService: AuthenticationService, private route: Router) {
     this.user$ = authenticationService.getUser$();
   }
-  
+
 }

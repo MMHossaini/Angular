@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 
 import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -33,9 +34,9 @@ import { AuthenticationService } from './shared/authentication.service';
 import { AuthenticationGuard } from './shared/authentication.guard';
 import { DatabaseService } from './shared/database.service';
 import { LayoutComponent } from './layout/layout.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
-import { LoginComponent } from './shared/components/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { NewUserComponent } from './shared/components/new-user/new-user.component';
 
@@ -53,7 +54,7 @@ import { NewUserComponent } from './shared/components/new-user/new-user.componen
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule, AngularFirestoreModule,
+    AngularFireAuthModule, AngularFirestoreModule, AngularFireAuthGuardModule,
     BrowserAnimationsModule // imports firebase/app needed for everything   
     , AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey

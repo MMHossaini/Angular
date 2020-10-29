@@ -1,0 +1,22 @@
+.container {
+  background: url("/assets/Flag_of_New_Zealand.svg");
+  background-size: contain;
+  opacity: 0;
+  // animation-iteration-count: initial;
+
+  animation-name: show;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+}
+mat-card {
+  transition: width 1s;
+  width: max-content;
+  max-width: 400px;
+}
+
+@keyframes show {
+  100% {
+    opacity: 1;
+  }
+}
