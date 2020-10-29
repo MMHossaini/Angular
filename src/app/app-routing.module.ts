@@ -15,26 +15,21 @@ const routes: Routes = [
 
   {
     path: '',
-    component: HomeComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
+    component: LayoutComponent,
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin },
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard] },
+      { path: 'new-user', component: NewUserComponent, canActivate: [AuthenticationGuard] },
+      // modules
+      { path: 'jobs', loadChildren: () => import('./modules/jobs/jobs.module').then(m => m.JobsModule) },
+      { path: 'youtube', loadChildren: () => import('./modules/youtube-converter/youtube-converter.module').then(m => m.YoutubeConverterModule) },
+      { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
+      { path: 'webrtc', loadChildren: () => import('./modules/webrtc/webrtc.module').then(m => m.WebrtcModule) },
+      { path: 'lol', loadChildren: () => import('./modules/leage-of-legends/leage-of-legends.module').then(m => m.LeageOfLegendsModule) }
+    ]
   },
   { path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToHome } }
-
-  // {
-  //   path: '',
-  //   component: LayoutComponent,
-  //   children: [
-  //     { path: '', component: HomeComponent },
-  //     { path: 'login', component: LoginComponent },
-  //     { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard] },
-  //     { path: 'new-user', component: NewUserComponent, canActivate: [AuthenticationGuard] },
-  //     // modules
-  //     { path: 'jobs', loadChildren: () => import('./modules/jobs/jobs.module').then(m => m.JobsModule) },
-  //     { path: 'youtube', loadChildren: () => import('./modules/youtube-converter/youtube-converter.module').then(m => m.YoutubeConverterModule) },
-  //     { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
-  //     { path: 'webrtc', loadChildren: () => import('./modules/webrtc/webrtc.module').then(m => m.WebrtcModule) },
-  //     { path: 'lol', loadChildren: () => import('./modules/leage-of-legends/leage-of-legends.module').then(m => m.LeageOfLegendsModule) }
-  //   ]
-  // }
 ];
 
 @NgModule({

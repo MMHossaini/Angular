@@ -1,22 +1,32 @@
-<div class="container" fxFlexFill fxFlayout="column" fxLayoutAlign="center center">
+<div class="container" fxFlexFill fxLayout="column" fxLayoutAlign="center center">
 
     <div class="white-box">
+
         <ng-container *ngIf="showLoading">
-            <div class="loading-div" fxFlayout="column" fxLayoutAlign="center center">
+            <div class="loading-div" fxLayout="column" fxLayoutAlign="center center">
                 <mat-spinner></mat-spinner>
             </div>
         </ng-container>
 
-        <h1 class="title">Log in</h1>
-        <p>You will recieve an email with the link to log you in</p>
-        <form [formGroup]="loginInForm" (ngSubmit)="submitLogInForm()" fxLayout="column" autocomplete="off">
-            <mat-form-field appearance="legacy">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" formControlName="email">
-            </mat-form-field>
-            <button type="submit" mat-raised-button color="primary" [disabled]="!loginInForm.valid">
-                Login
-            </button>
-        </form>
+        <ng-container *ngIf="showLoggingIn">
+            <div class="logging-in-div" fxLayout="column" fxLayoutAlign="center center">
+                <mat-spinner></mat-spinner>
+                <p>Confirming...</p>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="!showLoggingIn">
+            <h1 class="title">Log in</h1>
+            <p>You will recieve an email with the link to log you in</p>
+            <form [formGroup]="loginInForm" (ngSubmit)="submitLogInForm()" fxLayout="column" autocomplete="off">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email">
+                </mat-form-field>
+                <button type="submit" mat-raised-button color="primary" [disabled]="!loginInForm.valid">
+                    Login
+                </button>
+            </form>
+        </ng-container>
     </div>
 </div>

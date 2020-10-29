@@ -15,7 +15,8 @@ import { DatabaseService } from 'src/app/shared/database.service';
 })
 export class LoginComponent {
   loginInForm: FormGroup;
-  showLoading = false;
+  showLoading: boolean = false;
+  showLoggingIn: boolean = false;
   user: Observable<any>;
   user$: Observable<firebase.User>;
 
@@ -38,7 +39,6 @@ export class LoginComponent {
 
     // check if this is a signInWithEmailLink
     if (this.afAuth.auth.isSignInWithEmailLink(this.route.url)) {
-      this.showLoading = true;
       this.confirmLogin();
     }
 
@@ -94,36 +94,56 @@ export class LoginComponent {
     }
   }
 
+  // when the user clicks on the email link
+  // this gets called from the constructor
   async confirmLogin() {
-    let email = this.authenticationService.getLoginEmail();
+    try {
+      this.showLoggingIn = true;
 
-    if (email) {
-      // wait to sign in
-      let userCredential = await this.afAuth.auth.signInWithEmailLink(email, this.route.url);
+      let email = this.authenticationService.getLoginEmail();
 
-      // remove the email from localStorage
-      window.localStorage.removeItem(email);
+      if (email) {
+        // wait to sign in
+        let userCredential = await this.afAuth.auth.signInWithEmailLink(email, this.route.url);
 
-      let doesUserExist: any = await this.databaseService.getUserById(userCredential.user.uid);
+        // remove the email from localStorage
+        window.localStorage.removeItem(email);
 
-      // if user exists
-      if (doesUserExist) {
-        this._snackBar.open('Welcome back ' + doesUserExist.firstName, null, {
-          duration: 4000,
-        });
+        let doesUserExist: any = await this.databaseService.getUserById(userCredential.user.uid);
 
-        this.route.navigate(['/']);
+        // if user exists
+        if (doesUserExist) {
+          this._snackBar.open('Welcome back ' + doesUserExist.firstName, null, {
+            duration: 4000,
+          });
+
+          this.route.navigate(['/']);
+        }
+        else {
+          this.route.navigate(['/new-user']);
+
+          this._snackBar.open('Welcome to the app ' + email + ' , Please create a profile', null, {
+            duration: 4000,
+          });
+        }
+
+        // update user
+        await this.authenticationService.updateUser(userCredential.user);
       }
-      else {
-        this.route.navigate(['/new-user']);
+    } catch (err) {
+      this.showLoggingIn = false;
+      switch (err['code']) {
+        case 'auth/invalid-action-code':
+          this._snackBar.open('Expired link', null, {
+            duration: 10000,
+          });
+          break;
 
-        this._snackBar.open('Welcome ' + email + ' , Please create a profile', null, {
-          duration: 4000,
-        });
+        default:
+          this._snackBar.open(err['message'], null, {
+            duration: 4000,
+          });
       }
-
-      // update user
-      await this.authenticationService.updateUser(userCredential.user);
     }
   }
 
