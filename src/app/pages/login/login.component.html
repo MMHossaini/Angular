@@ -1,16 +1,13 @@
 <div class="container" fxFlexFill fxFlayout="column" fxLayoutAlign="center center">
 
-    <!-- show loading or content -->
-    <mat-card>
-        <mat-spinner *ngIf="showProgress==true else showContent"></mat-spinner>
+    <div class="white-box">
+        <ng-container *ngIf="showLoading">
+            <div class="loading-div" fxFlayout="column" fxLayoutAlign="center center">
+                <mat-spinner></mat-spinner>
+            </div>
+        </ng-container>
 
-    </mat-card>
-</div>
-
-<ng-template #showContent>
-    <div *ngIf="isEmailSent==false else emailSent">
-
-        <h1>Log in</h1>
+        <h1 class="title">Log in</h1>
         <p>You will recieve an email with the link to log you in</p>
         <form [formGroup]="loginInForm" (ngSubmit)="submitLogInForm()" fxLayout="column" autocomplete="off">
             <mat-form-field appearance="legacy">
@@ -22,10 +19,4 @@
             </button>
         </form>
     </div>
-
-</ng-template>
-
-<ng-template #emailSent>
-    <h1>Please Check Your Mail</h1>
-    <p>You should have recieved an email link in your email to instantly log in</p>
-</ng-template>
+</div>

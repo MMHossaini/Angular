@@ -14,12 +14,8 @@ import { DatabaseService } from 'src/app/shared/database.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  passwordlessSignOn: boolean = true;
-  showLoading: boolean = true;
-
   loginInForm: FormGroup;
-  showProgress = false;
-  isEmailSent = false;
+  showLoading = false;
   user: Observable<any>;
   user$: Observable<firebase.User>;
 
@@ -42,7 +38,7 @@ export class LoginComponent {
 
     // check if this is a signInWithEmailLink
     if (this.afAuth.auth.isSignInWithEmailLink(this.route.url)) {
-      this.showProgress = true;
+      this.showLoading = true;
       this.confirmLogin();
     }
 
@@ -57,14 +53,13 @@ export class LoginComponent {
       // make sure the email form is valid
       if (this.loginInForm.valid) {
 
-
         let email = this.loginInForm.value.email;
 
         // save email
         this.authenticationService.saveEmailForConfirmLogin(email);
 
-        // show progress
-        this.showProgress = true;
+        // show loading
+        this.showLoading = true;
 
         await this.afAuth.auth.sendSignInLinkToEmail(
           email,
@@ -76,12 +71,14 @@ export class LoginComponent {
           }
         );
 
-        this.showProgress = false;
-        this.isEmailSent = true;
+        this.showLoading = false;
+        this._snackBar.open('Please check your mail box, you should have recieved an email link in your email to instantly log in', null, {
+          duration: 4000,
+        });
       }
     }
     catch (err) {
-      this.showProgress = false;
+      this.showLoading = false;
       switch (err['code']) {
         case 'auth/operation-not-allowed':
           this._snackBar.open('You need to enable Email Link Passwordless sign in in your firebase console project', null, {
