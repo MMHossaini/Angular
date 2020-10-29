@@ -33,6 +33,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+## Test cases
+Not doing any uni tests at the moment, but these are the requirments
+
+1. When page loads, if uesr is not logged in, they should be forwareded to login page, else to home
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
