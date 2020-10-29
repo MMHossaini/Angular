@@ -3,7 +3,11 @@ import { CommonModule } from '@angular/common';
 import { YoutubeConverterRoutingModule } from './youtube-converter-routing.module';
 import { YoutubeConverterComponent } from './youtube-converter.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule, MatCardModule, MatInputModule, MatButtonModule, MatRadioModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [YoutubeConverterComponent],

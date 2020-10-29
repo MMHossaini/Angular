@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
 })
 export class WebrtcComponent implements OnInit, OnDestroy {
 
-  @ViewChild("me", { static: false }) me: any;
-  @ViewChild("em", { static: false }) em: any;
+  @ViewChild("me") me: any;
+  @ViewChild("em") em: any;
 
   peer: Peer;
   callLink: string;

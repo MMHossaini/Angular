@@ -1,9 +1,10 @@
 import { Component, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
-import { MatTableDataSource, MatSort } from "@angular/material";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { map } from "rxjs/internal/operators/map";
 import { debug } from "util";
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface PeriodicElement {
   name: string;

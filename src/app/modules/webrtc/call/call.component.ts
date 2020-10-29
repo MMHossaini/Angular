@@ -13,8 +13,8 @@ export class CallComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.peer.destroy()
   }
-  @ViewChild("me", { static: false }) me: any;
-  @ViewChild("em", { static: false }) em: any;
+  @ViewChild("me") me: any;
+  @ViewChild("em") em: any;
   peer: Peer;
   connecting: boolean = true;
   call;
