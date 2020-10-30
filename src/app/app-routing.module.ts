@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-import { AuthenticationGuard } from './shared/authentication.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
@@ -19,8 +18,8 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin },
     children: [
       { path: '', component: HomeComponent },
-      { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard] },
-      { path: 'new-user', component: NewUserComponent, canActivate: [AuthenticationGuard] },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'new-user', component: NewUserComponent },
       // modules
       { path: 'jobs', loadChildren: () => import('./modules/jobs/jobs.module').then(m => m.JobsModule) },
       { path: 'youtube', loadChildren: () => import('./modules/youtube-converter/youtube-converter.module').then(m => m.YoutubeConverterModule) },
