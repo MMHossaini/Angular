@@ -1,4 +1,4 @@
-<!-- Show login if user is not logged in -->
+<!-- Show login if user is not logged in
 
 <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
     <div *ngIf="user$ | async else login">
@@ -10,4 +10,10 @@
 
 <ng-template #login>
     <app-login fxFlexFill></app-login>
-</ng-template>
+</ng-template> -->
+
+<gridster [options]="options">
+    <gridster-item [item]="item" *ngFor="let item of dashboard">
+        <!-- your content here -->
+    </gridster-item>
+</gridster>

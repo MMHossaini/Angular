@@ -39,6 +39,7 @@ import { AvatarComponent } from './shared/components/avatar/avatar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { NewUserComponent } from './shared/components/new-user/new-user.component';
+import { GridsterModule } from 'angular-gridster2';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { NewUserComponent } from './shared/components/new-user/new-user.componen
     MatSlideToggleModule, MatRippleModule, MatTooltipModule
     , FlexLayoutModule
     , ReactiveFormsModule
+    , GridsterModule 
     , ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AuthenticationService, AuthenticationGuard, DatabaseService],
